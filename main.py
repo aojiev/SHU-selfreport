@@ -13,7 +13,7 @@ import base64
 import re
 
 NEED_BEFORE = True  # 如需补报则置为True，否则False
-START_DT = dt.datetime(2020, 12, 25)  # 需要补报的起始日期
+START_DT = dt.datetime(2020, 12, 27)  # 需要补报的起始日期
 XIAOQU = "宝山"  # 宝山、嘉定或延长
 
 
@@ -130,7 +130,11 @@ def report(sess, t, xiaoqu='宝山', temperature=37):
                 'p1$DangQSTZK': '良好',
                 'p1$TiWen': str(temperature),
                 'p1$TiWen': '37',
-                'p1$ZaiXiao': xiaoqu,
+                'p1$ZaiXiao': '不到校',
+                'p1$MingTDX': '不到校',
+                'p1$MingTJC': "否",
+                'p1$ShiFZX': "否",
+                'p1$MingTJC': "否",
                 'p1$ddlSheng$Value': '上海',
                 'p1$ddlSheng': '上海',
                 'p1$ddlShi$Value': '上海市',
@@ -140,6 +144,10 @@ def report(sess, t, xiaoqu='宝山', temperature=37):
                 'p1$FengXDQDL': '否',
                 'p1$TongZWDLH': '否',
                 'p1$XiangXDZ': '上海大学',
+                'p1$GuoNei': '国内',
+                'p1$ShiFSH': '否',
+                'p1$FanHTZ': '在上海',
+                'p1$JiaRen': '否',
                 'p1$QueZHZJC$Value': '否',
                 'p1$QueZHZJC': '否',
                 'p1$DangRGL': '否',
@@ -204,7 +212,6 @@ if __name__ == "__main__":
                 t = START_DT
                 while t < now:
                     report(sess, t + dt.timedelta(hours=8), XIAOQU)
-                    report(sess, t + dt.timedelta(hours=20), XIAOQU)
 
                     t = t + dt.timedelta(days=1)
 
